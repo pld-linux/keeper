@@ -10,6 +10,7 @@ Source0:	http://www.inf.bme.hu/~mszeredi/keeper/%{name}-%{version}.tar.gz
 Patch0:		%{name}-shared.patch
 URL:		http://www.inf.bme.hu/~mszeredi/keeper/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gtk+-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
