@@ -1,0 +1,155 @@
+--- keeper-1.0/configure.in.orig	Tue Feb 22 22:22:22 2000
++++ keeper-1.0/configure.in	Wed May  7 15:49:41 2003
+@@ -7,7 +7,7 @@
+ cflags="$CFLAGS"
+ AC_PROG_CC
+ AC_PROG_INSTALL
+-AC_PROG_RANLIB
++AC_PROG_LIBTOOL
+ 
+ if test "x$cflags" = x; then
+    if test "$GCC" = yes; then
+--- keeper-1.0/example/Makefile.in.orig	Tue Feb 22 22:22:22 2000
++++ keeper-1.0/example/Makefile.in	Wed May  7 15:46:28 2003
+@@ -6,6 +6,8 @@
+ CFLAGS = @CFLAGS@
+ CPPFLAGS = @CPPFLAGS@ @DEFS@ -I$(libsrcdir)
+ LDFLAGS = @LDFLAGS@
++top_builddir = ..
++LIBTOOL = @LIBTOOL@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .o .s
+@@ -16,19 +18,19 @@
+ .c.s:
+ 	$(CC) $(CFLAGS) $(CPPFLAGS) -S $<
+ 
+-libkeeper = ../src/libkeeper.a
++libkeeper = ../src/libkeeper.la
+ 
+ example_objs = example.o $(libkeeper)
+ example: $(example_objs)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o example $(example_objs)
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o example $(example_objs)
+ 
+ kptest_objs = kptest.o $(libkeeper)
+ kptest: $(kptest_objs)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o kptest $(kptest_objs) -lpthread
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o kptest $(kptest_objs) -lpthread
+ 
+ test_reload_objs = test_reload.o $(libkeeper)
+ test_reload: $(test_reload_objs)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o test_reload $(test_reload_objs)
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o test_reload $(test_reload_objs)
+ 
+ depend:
+ 	cp -f Makefile Makefile.old
+--- keeper-1.0/gkeeper/Makefile.in.orig	Tue Feb 22 22:22:22 2000
++++ keeper-1.0/gkeeper/Makefile.in	Wed May  7 15:48:58 2003
+@@ -13,9 +13,11 @@
+ CC = @CC@
+ CFLAGS = @CFLAGS@
+ CPPFLAGS = @CPPFLAGS@ @DEFS@ -I$(libsrcdir) -I$(pixmapdir) -I.. `gtk-config --cflags`
+-LDFLAGS = @LDFLAGS@ -L$(libsrcdir)
++LDFLAGS = @LDFLAGS@
+ INSTALL = @INSTALL@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
++top_builddir = ..
++LIBTOOL = @LIBTOOL@
+ 
+ gtklibs = `gtk-config --libs`
+ 
+@@ -31,13 +33,13 @@
+ all: $(build_gkeeper)
+ 
+ gkeeper_objs = gkeeper.o tree.o edit.o menu.o dialog.o
+-gkeeper_libs = $(gtklibs) -lkeeper
++gkeeper_libs = $(gtklibs) $(libsrcdir)/libkeeper.la
+ gkeeper: $(gkeeper_objs)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o gkeeper $(gkeeper_objs) $(gkeeper_libs)
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o gkeeper $(gkeeper_objs) $(gkeeper_libs)
+ 
+ install: all
+-	@if test -f gkeeper; then \
+-            $(INSTALL_PROGRAM) -m 755 gkeeper $(i_bindir); fi
++	@if test -f gkeeper -o -f .libs/gkeeper ; then \
++            $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) -m 755 gkeeper $(i_bindir); fi
+ 
+ depend:
+ 	cp -f Makefile Makefile.old
+--- keeper-1.0/kptool/Makefile.in.orig	Tue Feb 22 22:22:22 2000
++++ keeper-1.0/kptool/Makefile.in	Wed May  7 15:48:31 2003
+@@ -13,6 +13,8 @@
+ LDFLAGS = @LDFLAGS@
+ INSTALL = @INSTALL@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
++top_builddir = ..
++LIBTOOL = @LIBTOOL@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .o .s
+@@ -25,13 +27,13 @@
+ 
+ all: kptool
+ 
+-kptool_objs = kptool.o kp_imp.o kp_exp.o $(libsrcdir)/libkeeper.a
++kptool_objs = kptool.o kp_imp.o kp_exp.o $(libsrcdir)/libkeeper.la
+ kptool: $(kptool_objs)
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o kptool $(kptool_objs)
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o kptool $(kptool_objs)
+ 
+ install: kptool
+ 	@../mkinstalldirs $(i_bindir)
+-	$(INSTALL_PROGRAM) -m 755 kptool $(i_bindir)
++	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) -m 755 kptool $(i_bindir)
+ 
+ depend:
+ 	cp -f Makefile Makefile.old
+--- keeper-1.0/src/Makefile.in.orig	Tue Feb 22 22:22:22 2000
++++ keeper-1.0/src/Makefile.in	Wed May  7 15:45:25 2003
+@@ -13,33 +13,34 @@
+ RANLIB = @RANLIB@
+ INSTALL = @INSTALL@
+ INSTALL_DATA = @INSTALL_DATA@
++top_builddir = ..
++LIBTOOL = @LIBTOOL@
+ AR = ar
+ 
+ .SUFFIXES:
+-.SUFFIXES: .c .o .s
++.SUFFIXES: .c .lo .s
+ 
+-.c.o:
+-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $<
++.c.lo:
++	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(CPPFLAGS) -c $<
+ 
+ .c.s:
+ 	$(CC) $(CFLAGS) $(CPPFLAGS) -S $<
+ 
+ 
+-all: libkeeper.a
++all: libkeeper.la
+ 
+-install: libkeeper.a
++install: libkeeper.la
+ 	@../mkinstalldirs $(i_libdir)
+ 	@../mkinstalldirs $(i_incdir)
+-	$(INSTALL_DATA) libkeeper.a $(i_libdir)
++	$(LIBTOOL) --mode=install $(INSTALL) libkeeper.la $(i_libdir)
+ 	$(INSTALL_DATA) keeper.h $(i_incdir)
+ 
+ 
+-libkeeper_objs = kp_iface.o kp_cache.o kp_get.o kp_set.o  kp_util.o \
+-                 kp_dir.o kp_enum.o kp_sort.o kp_recur.o
++libkeeper_objs = kp_iface.lo kp_cache.lo kp_get.lo kp_set.lo  kp_util.lo \
++                 kp_dir.lo kp_enum.lo kp_sort.lo kp_recur.lo
+ 
+-libkeeper.a: $(libkeeper_objs)
+-	$(AR) cr libkeeper.a $(libkeeper_objs)
+-	$(RANLIB) libkeeper.a
++libkeeper.la: $(libkeeper_objs)
++	$(LIBTOOL) --mode=link $(CC) -o libkeeper.la $(libkeeper_objs) -rpath $(i_libdir)
+ 
+ 
+ depend:
