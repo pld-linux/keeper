@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.inf.bme.hu/~mszeredi/keeper/%{name}-%{version}.tar.gz
+# Source0-md5:	e5c142618aeee2eb0da8e1599d73de7d
 Patch0:		%{name}-shared.patch
 URL:		http://www.inf.bme.hu/~mszeredi/keeper/
 BuildRequires:	autoconf
