@@ -24,7 +24,7 @@ for examining and modifying the keeper database.
 %description -l pl
 Biblioteka keeper udostêpnia bardzo prosty interfejs do odczutu i
 zapisu danych konfiguracyjnych. Dane s± zapisywane w wielu plikach
-tekstowych w systemie hierarchiczym. Ten pakiet zawiera tak¿e
+tekstowych w systemie hierarchicznym. Ten pakiet zawiera tak¿e
 dzia³aj±ce z linii poleceñ narzêdzie do sprawdzania i modyfikowania
 bazy danych keepera.
 
