@@ -59,13 +59,13 @@ Group:		X11/Applications
 Requires:	%{name} = %{version}
 
 %description -n gkeeper
-Gkeeper is a GTK based front-end for the keeper database. Gkeeper lets
+Gkeeper is a GTK+ based front-end for the keeper database. Gkeeper lets
 you view, edit, create or delete entries in the database. The source
 of gkeeper contains a good example, on how to store and retrieve the
 menu accelerators using the keeper interface.
 
 %description -n gkeeper -l pl
-Gkeeper to oparty na GTK graficzny interfejs do bazy danych keeper.
+Gkeeper to oparty na GTK+ graficzny interfejs do bazy danych keeper.
 Gkeeper pozwala na przegl±danie, edycjê, tworzenie i usuwanie wpisów w
 bazie. ¬ród³a gkeepera zawieraj± dobry przyk³ad, jak zapisywaæ i
 odtwarzaæ skróty klawiszowe menu przy u¿yciu interfejsu keepera.
