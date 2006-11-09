@@ -32,7 +32,7 @@ bazy danych keepera.
 Summary:	Header files for keeper library
 Summary(pl):	Pliki nag³ówkowe biblioteki keeper
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for keeper library.
@@ -44,7 +44,7 @@ Pliki nag³ówkowe biblioteki keeper.
 Summary:	Static keeper library
 Summary(pl):	Statyczna biblioteka keeper
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static keeper library.
@@ -56,7 +56,7 @@ Statyczna biblioteka keeper.
 Summary:	A graphical tool for viewing and manipulating the keeper database
 Summary(pl):	Graficzne narzêdzie do ogl±dania i modyfikowania bazy danych keepera
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description -n gkeeper
 Gkeeper is a GTK+ based front-end for the keeper database. Gkeeper lets
