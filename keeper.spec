@@ -1,5 +1,5 @@
 Summary:	A configuration reading and writing library
-Summary(pl):	Biblioteka do odczytu i zapisu konfiguracji
+Summary(pl.UTF-8):   Biblioteka do odczytu i zapisu konfiguracji
 Name:		keeper
 Version:	1.0
 Release:	1
@@ -21,40 +21,40 @@ writing configuration data. Data is stored in multiple text files, in
 a hierarchical system. This package also contains a command-line tool
 for examining and modifying the keeper database.
 
-%description -l pl
-Biblioteka keeper udostêpnia bardzo prosty interfejs do odczutu i
-zapisu danych konfiguracyjnych. Dane s± zapisywane w wielu plikach
-tekstowych w systemie hierarchicznym. Ten pakiet zawiera tak¿e
-dzia³aj±ce z linii poleceñ narzêdzie do sprawdzania i modyfikowania
+%description -l pl.UTF-8
+Biblioteka keeper udostÄ™pnia bardzo prosty interfejs do odczutu i
+zapisu danych konfiguracyjnych. Dane sÄ… zapisywane w wielu plikach
+tekstowych w systemie hierarchicznym. Ten pakiet zawiera takÅ¼e
+dziaÅ‚ajÄ…ce z linii poleceÅ„ narzÄ™dzie do sprawdzania i modyfikowania
 bazy danych keepera.
 
 %package devel
 Summary:	Header files for keeper library
-Summary(pl):	Pliki nag³ówkowe biblioteki keeper
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki keeper
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for keeper library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki keeper.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki keeper.
 
 %package static
 Summary:	Static keeper library
-Summary(pl):	Statyczna biblioteka keeper
+Summary(pl.UTF-8):   Statyczna biblioteka keeper
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static keeper library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka keeper.
 
 %package -n gkeeper
 Summary:	A graphical tool for viewing and manipulating the keeper database
-Summary(pl):	Graficzne narzêdzie do ogl±dania i modyfikowania bazy danych keepera
+Summary(pl.UTF-8):   Graficzne narzÄ™dzie do oglÄ…dania i modyfikowania bazy danych keepera
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -64,11 +64,11 @@ you view, edit, create or delete entries in the database. The source
 of gkeeper contains a good example, on how to store and retrieve the
 menu accelerators using the keeper interface.
 
-%description -n gkeeper -l pl
+%description -n gkeeper -l pl.UTF-8
 Gkeeper to oparty na GTK+ graficzny interfejs do bazy danych keeper.
-Gkeeper pozwala na przegl±danie, edycjê, tworzenie i usuwanie wpisów w
-bazie. ¬ród³a gkeepera zawieraj± dobry przyk³ad, jak zapisywaæ i
-odtwarzaæ skróty klawiszowe menu przy u¿yciu interfejsu keepera.
+Gkeeper pozwala na przeglÄ…danie, edycjÄ™, tworzenie i usuwanie wpisÃ³w w
+bazie. Å¹rÃ³dÅ‚a gkeepera zawierajÄ… dobry przykÅ‚ad, jak zapisywaÄ‡ i
+odtwarzaÄ‡ skrÃ³ty klawiszowe menu przy uÅ¼yciu interfejsu keepera.
 
 %prep
 %setup -q
