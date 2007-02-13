@@ -1,5 +1,5 @@
 Summary:	A configuration reading and writing library
-Summary(pl.UTF-8):   Biblioteka do odczytu i zapisu konfiguracji
+Summary(pl.UTF-8):	Biblioteka do odczytu i zapisu konfiguracji
 Name:		keeper
 Version:	1.0
 Release:	1
@@ -30,7 +30,7 @@ bazy danych keepera.
 
 %package devel
 Summary:	Header files for keeper library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki keeper
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki keeper
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -42,7 +42,7 @@ Pliki nagłówkowe biblioteki keeper.
 
 %package static
 Summary:	Static keeper library
-Summary(pl.UTF-8):   Statyczna biblioteka keeper
+Summary(pl.UTF-8):	Statyczna biblioteka keeper
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -54,7 +54,7 @@ Statyczna biblioteka keeper.
 
 %package -n gkeeper
 Summary:	A graphical tool for viewing and manipulating the keeper database
-Summary(pl.UTF-8):   Graficzne narzędzie do oglądania i modyfikowania bazy danych keepera
+Summary(pl.UTF-8):	Graficzne narzędzie do oglądania i modyfikowania bazy danych keepera
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
